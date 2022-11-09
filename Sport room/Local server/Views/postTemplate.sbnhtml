@@ -1,0 +1,13 @@
+{{~ for $i in 0..(posts.size - 1) ~}}
+<div class="post">
+    <div class="post_info">
+        <b>{{ posts[$i].author }}</b>
+        &nbsp;|&nbsp;
+        {{ date.to_string posts[$i].date '%d/%m/%Y %T' 'ru-RU' }}
+    </div>
+    <div class="post_content">
+        {{ posts[$i].content }}
+    </div>
+    <button>комментарии</button>
+</div>
+{{~ end ~}}

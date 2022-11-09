@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sport room</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/posts.css">
+        <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo_holder">
+                <b>Sport room</b>
+            </div>
+        </div>
+        <div class="posts" id="posts">
+            {{~ for $i in 0..(posts.size - 1) ~}}
+            <div class="post">
+                <div class="post_info">
+                    <b>{{ posts[$i].author }}</b>
+                    &nbsp;|&nbsp;
+                    {{ date.to_string posts[$i].date '%d/%m/%Y %T' 'ru-RU' }}
+                </div>
+                <div class="post_content">
+                    {{ posts[$i].content }}
+                </div>
+                <button>комментарии</button>
+            </div>
+            {{~ end ~}}
+        </div>
+        <script src="../js/script.js"></script>
+    </body>
+</html>
