@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Local_server.Models
+﻿namespace Local_server.Models
 {
     internal class User
     {
@@ -13,5 +7,14 @@ namespace Local_server.Models
         public string Password { get; }
         public string Email { get; }
         public string Phone { get; }
+
+        public User(int id, string name, string password, string email, string phone)
+        {
+            Id = id;
+            Name = name;
+            Password = password;
+            Email = email;
+            Phone = phone;
+        }
     }
 }
