@@ -27,6 +27,6 @@
             </div>
             {{~ end ~}}
         </div>
-        <script src="../js/script.js"></script>
+        <script src="../js/ajax-for-posts.js"></script>
     </body>
 </html>

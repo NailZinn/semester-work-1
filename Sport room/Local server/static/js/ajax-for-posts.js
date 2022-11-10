@@ -1,9 +1,7 @@
-var lastScrollTop = 0;
 var page = 0;
 
 function loadPosts() {
     if (page > -1) {
-        lastScrollTop = $("#posts").scrollTop();
         page++;
         $.ajax({
             type: "GET",
@@ -20,8 +18,8 @@ function loadPosts() {
     }
 }
 
-$("#posts").scroll(function () { 
-    if ($("#posts").scrollTop() - lastScrollTop > $("#posts").height()) {
+$("#posts").scroll(function () {
+    if ($("#posts").scrollTop() >= $("#posts").prop("scrollHeight") - $("#posts").prop("offsetHeight") - 1) {
         loadPosts();
     }
 });
