@@ -18,8 +18,8 @@ function loadPosts() {
     }
 }
 
-$("#posts").scroll(function () {
-    if ($("#posts").scrollTop() >= $("#posts").prop("scrollHeight") - $("#posts").prop("offsetHeight") - 1) {
+$(window).scroll(function () {
+    if ($(window).scrollTop() >= $("#posts").height() - $(window).height() + 100) {
         loadPosts();
     }
 });
