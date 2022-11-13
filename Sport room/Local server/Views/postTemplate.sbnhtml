@@ -8,6 +8,8 @@
     <div class="post_content">
         {{ posts[$i].content }}
     </div>
-    <button>комментарии</button>
+    <div class="post_comments">
+        <a>комментарии</a> 
+    </div>
 </div>
 {{~ end ~}}
