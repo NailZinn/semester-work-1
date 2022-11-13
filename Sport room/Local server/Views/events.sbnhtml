@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sport room</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width initial-scale=1">
+        <link rel="stylesheet" href="../css/events.css">
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo_holder">
+                <b>Sport room</b>
+            </div>
+        </div>
+        <div class="main_content">
+            <div class="events">
+                <div class="events_header">
+                    <button>футбол</button>
+                    <button>хоккей</button>
+                    <button>теннис</button>
+                    <button>баскетбол</button>
+                    <button>волейбол</button>
+                </div>
+                {{~ for event in events ~}}
+                <div class="event">
+                    <div class="event_header">
+                        <b>{{ event.key }}</b>
+                    </div>
+                    {{~ for match in event.value ~}}
+                    <div class="match">
+                        <div style="margin-right: 60px">
+                            {{ date.to_string match.date '%R' 'ru-RU' }}
+                        </div>
+                        <div>
+                            <div>
+                                {{ match.team_a }}
+                            </div>
+                            <div>
+                                {{ match.team_b }}
+                            </div>
+                        </div>
+                    </div>
+                    {{~ end ~}}
+                    <br>
+                </div>
+                {{~ end ~}}
+            </div>
+        </div>
+    </body>
+</html>

@@ -5,12 +5,16 @@
         public int Id { get; }
         public DateTime Date { get; }
         public string Name { get; }
+        public string TeamA { get; }
+        public string TeamB { get; }
 
-        public Event(int id, DateTime date, string name)
+        public Event(int id, DateTime date, string name, string teamA, string teamB)
         {
             Id = id;
             Date = date;
             Name = name;
+            TeamA = teamA;
+            TeamB = teamB;
         }
     }
 }
