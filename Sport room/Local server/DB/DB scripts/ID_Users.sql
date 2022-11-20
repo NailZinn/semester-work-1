@@ -1,8 +1,8 @@
-create trigger ID_Users on Users
+create trigger ID_Accounts on Accounts
 instead of delete as
 begin
 	delete from Posts
-	where UserId in (select Id from deleted)
-	delete from Users
+	where AccountId in (select Id from deleted)
+	delete from Accounts
 	where Id in (select Id from deleted)
 end
