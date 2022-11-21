@@ -25,7 +25,7 @@ create table Posts(
 --COMMENTS
 create table Comments(
 	Id int not null identity,
-	Date date not null,
+	Date datetime2(0) not null,
 	Content varchar(200) not null,
 	AccountId int not null,
 	PostId int not null,
