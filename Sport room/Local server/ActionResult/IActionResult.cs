@@ -6,6 +6,6 @@ namespace Local_server.ActionResult
     {
         public HttpStatusCode HttpStatusCode { get; }
         public string ContentType { get; }
-        public Task<byte[]> Buffer { get; }
+        public byte[] Buffer { get; }
     }
 }

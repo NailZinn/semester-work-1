@@ -1,5 +1,7 @@
 ﻿using Local_server.Models;
+using Scriban;
 using System.Net;
+using System.Text;
 
 namespace Local_server.ActionResult
 {
@@ -7,16 +9,22 @@ namespace Local_server.ActionResult
     {
         public HttpStatusCode HttpStatusCode { get; }
         public string ContentType { get; }
-        public Task<byte[]> Buffer { get; }
+        public byte[] Buffer { get; }
+
+        private static readonly Template _template;
+
+        static EventResult()
+        {
+            var data = File.ReadAllText(StringConstants.EventsTemplatePath);
+            _template = Template.Parse(data);
+        }
 
         public EventResult(Dictionary<string, List<Event>> events)
         {
-
-        }
-
-        public EventResult(Event? @event)
-        {
-
+            HttpStatusCode = HttpStatusCode.OK;
+            ContentType = "text/html";
+            Buffer = Encoding.UTF8.GetBytes(
+                _template.Render(new { events = events }));
         }
     }
 }

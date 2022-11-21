@@ -9,7 +9,7 @@ namespace Local_server.ActionResult
     {
         public HttpStatusCode HttpStatusCode { get; }
         public string ContentType { get; }
-        public Task<byte[]> Buffer { get; }
+        public byte[] Buffer { get; }
 
         public PostResult(Post? post)
         {
@@ -23,11 +23,16 @@ namespace Local_server.ActionResult
             HttpStatusCode = HttpStatusCode.OK;
             ContentType = "text/html";
 
-            var data = File.ReadAllText(path);
-            var template = Template.Parse(data);
-            var htmlPage = template.Render(new { posts = posts });
+            if (posts.Length != 0)
+            {
+                var data = File.ReadAllText(path);
+                var template = Template.Parse(data);
+                var htmlPage = template.Render(new { posts = posts });
 
-            Buffer = Task.Run(() => Encoding.UTF8.GetBytes(htmlPage));
+                Buffer = Encoding.UTF8.GetBytes(htmlPage);
+            }
+            else
+                Buffer = Array.Empty<byte>();
         }
     }
 }

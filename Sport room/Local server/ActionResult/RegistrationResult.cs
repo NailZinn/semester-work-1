@@ -6,7 +6,7 @@ namespace Local_server.ActionResult
     {
         public HttpStatusCode HttpStatusCode { get; }
         public string ContentType { get; }
-        public Task<byte[]> Buffer { get; }
+        public byte[] Buffer { get; }
 
         private readonly static string _path = "./static/html/registration.html";
 
@@ -14,7 +14,7 @@ namespace Local_server.ActionResult
         {
             HttpStatusCode = HttpStatusCode.OK;
             ContentType = "text/html";
-            Buffer = File.ReadAllBytesAsync(_path);
+            Buffer = File.ReadAllBytes(_path);
         }
 
         public RegistrationResult(string login, string email, string phone, string password)
