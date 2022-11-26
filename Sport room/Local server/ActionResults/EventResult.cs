@@ -3,14 +3,10 @@ using Scriban;
 using System.Net;
 using System.Text;
 
-namespace Local_server.ActionResult
+namespace Local_server.ActionResults
 {
-    internal class EventResult : IActionResult
+    internal class EventResult : ActionResult
     {
-        public HttpStatusCode HttpStatusCode { get; }
-        public string ContentType { get; }
-        public byte[] Buffer { get; }
-
         private static readonly Template _template;
 
         static EventResult()
@@ -19,12 +15,12 @@ namespace Local_server.ActionResult
             _template = Template.Parse(data);
         }
 
-        public EventResult(Dictionary<string, List<Event>> events)
+        public EventResult(Dictionary<string, List<Event>> events, bool isAuthenticated)
         {
-            HttpStatusCode = HttpStatusCode.OK;
+            StatusCode = HttpStatusCode.OK;
             ContentType = "text/html";
             Buffer = Encoding.UTF8.GetBytes(
-                _template.Render(new { events = events }));
+                _template.Render(new { events = events, authenticated = isAuthenticated }));
         }
     }
 }
