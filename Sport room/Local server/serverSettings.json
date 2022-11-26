@@ -1,4 +1,4 @@
 {
-  "Port": 3000,
-  "Path": "./static"
+  "Port": 7000,
+  "Path": "./static/"
 }

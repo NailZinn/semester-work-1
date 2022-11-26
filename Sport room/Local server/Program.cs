@@ -1,4 +1,5 @@
-﻿using Scriban;
+﻿using Local_server.Models;
+using Scriban;
 
 namespace Local_server
 {

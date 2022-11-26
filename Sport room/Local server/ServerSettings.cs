@@ -2,7 +2,7 @@
 {
     internal class ServerSettings
     {
-        public int Port => 7000;
-        public string Path => @"./static/";
+        public int Port { get; set; }
+        public string Path { get; set; }
     }
 }
