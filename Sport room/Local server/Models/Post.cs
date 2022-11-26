@@ -2,19 +2,11 @@
 {
     internal class Post
     {
-        public int Id { get; }
-        public string Author { get; }
-        public DateTime Date { get; }
-        public int UserId { get; }
-        public string Content { get; }
-
-        public Post(int id, string author, DateTime date, int userId, string content)
-        {
-            Id = id;
-            Author = author;
-            Date = date;
-            UserId = userId;
-            Content = content;
-        }
+        public int Id { get; set; }
+        public string Author { get; set; }
+        public DateTime Date { get; set; }
+        public string Content { get; set; }
+        public int AccountId { get; set; }
+        public string Url { get; set; }
     }
 }

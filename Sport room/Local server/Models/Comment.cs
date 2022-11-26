@@ -2,17 +2,11 @@
 {
     internal class Comment
     {
-        public int Id { get; }
-        public DateTime Date { get; }
-        public int UserId { get; }
-        public string Content { get; }
-
-        public Comment(int id, DateTime date, int userId, string content)
-        {
-            Id = id;
-            Date = date;
-            UserId = userId;
-            Content = content;
-        }
+        public int Id { get; set; }
+        public string Author { get; set; }
+        public DateTime Date { get; set; }
+        public string Content { get; set; }
+        public int AccountId { get; set; }
+        public int PostId { get; set; }
     }
 }
