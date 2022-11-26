@@ -2,9 +2,8 @@
 create table Accounts(
 	Id int not null identity,
 	Login varchar(20) not null unique,
-	Password varchar(16) not null,
+	Password varchar(100) not null,
 	Email varchar(50) not null unique,
-	TelephoneNumber varchar(12) not null unique,
 	constraint pk_account_id
 	primary key(Id)
 )
@@ -12,7 +11,7 @@ create table Accounts(
 --POSTS
 create table Posts(
 	Id int not null identity,
-	Date date not null,
+	Date datetime not null,
 	Content varchar(1000) not null,
 	AccountId int not null,
 	constraint pk_posts_id
@@ -25,7 +24,7 @@ create table Posts(
 --COMMENTS
 create table Comments(
 	Id int not null identity,
-	Date datetime2(0) not null,
+	Date datetime not null,
 	Content varchar(200) not null,
 	AccountId int not null,
 	PostId int not null,
@@ -44,11 +43,23 @@ create table Comments(
 --EVENTS
 create table Events(
 	Id int not null identity,
-	Date date not null,
+	Date datetime not null,
 	Name varchar(50) not null,
 	EventType varchar(20) not null,
 	TeamA varchar(50) not null,
 	TeamB varchar(50) not null,
 	constraint pk_events_id
 	primary key(Id)
+)
+
+--SESSIONS
+create table Sessions(
+	Id uniqueidentifier not null,
+	AccountId int not null,
+	Login varchar(20) not null,
+	Password varchar(100) not null,
+	constraint fk_session_to_account_id
+	foreign key(AccountId)
+	references Accounts
+	on delete cascade
 )
