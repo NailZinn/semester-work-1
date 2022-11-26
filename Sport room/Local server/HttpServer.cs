@@ -32,7 +32,7 @@ namespace Local_server
 
             Console.WriteLine("Запуск сервера...");
             _listener.Start();
-            Console.WriteLine("Сервер запущен");
+            Console.WriteLine($"Сервер запущен http://localhost:{settings.Port}/");
 
             status = ServerStatus.Started;
 

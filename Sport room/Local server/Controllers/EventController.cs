@@ -33,7 +33,7 @@ namespace Local_server.Controllers
             var events = await _dbContext.SelectAsync(eventType);
 
             return events
-                .Where(e => e.Date.Date == DateTime.Now.Date)
+                .Where(e => e.Date.Date == new DateTime(2022, 11, 26))
                 .GroupBy(e => e.Name)
                 .ToDictionary(group => group.Key, group => group.Select(e => e).ToList());
         }
