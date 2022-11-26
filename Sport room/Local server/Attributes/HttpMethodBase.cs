@@ -1,6 +1,6 @@
 ﻿namespace Local_server.Attributes
 {
-    internal class HttpMethodBase : Attribute
+    internal abstract class HttpMethodBase : Attribute
     {
         public string UriPattern { get; }
 
