@@ -4,6 +4,7 @@ create table Accounts(
 	Login varchar(20) not null unique,
 	Password varchar(100) not null,
 	Email varchar(50) not null unique,
+	Salt varchar(36) not null,
 	constraint pk_account_id
 	primary key(Id)
 )
