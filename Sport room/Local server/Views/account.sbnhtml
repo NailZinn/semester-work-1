@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sport room</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width initial-scale=1">
+        <link rel="stylesheet" href="../css/scrollbar.css">
+        <link rel="stylesheet" href="../css/enter.css">
+        <link rel="icon" href="../images/favicon-96x96.png">
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo_holder">
+                <b>Sport room</b>
+            </div>
+            <div class="header_navigation">
+                <a href="/">расписание</a>
+                <a href="/posts">посты</a>
+            </div>
+        </div>
+        <div class="enter_form_container">
+            <form method="post" action="/account" class="enter_form">
+                <fieldset style="display: grid; gap: 24px; border: none;">
+                    <div class="enter_form_input_container">
+                        {{ if login_or_email_exists }}
+                        <label style="color: red;">
+                            <b>такой логин или адрес эл. почты уже существует</b>
+                        </label>
+                        {{ end }}
+                        <label>
+                            <b>Изменить логин</b>
+                        </label>
+                        <input name="newLogin" type="text" autocomplete="off">
+                    </div>
+                    <div class="enter_form_input_container">
+                        <label>
+                            <b>Изменить эл. почту</b>
+                        </label>
+                        <input name="newEmail" type="email" autocomplete="off">
+                    </div>
+                    <div class="enter_form_input_container">
+                        <label>
+                            <b>Введите старый пароль</b>
+                        </label>
+                        {{ if wrong_password }}
+                        <label style="color: red;">
+                            <b>пароли не совпадают</b>
+                        </label>
+                        {{ end }}
+                        {{ if empty_password }}
+                        <label style="color: red;">
+                            <b>введите старый пароль</b>
+                        </label>
+                        {{ end }}
+                        <input name="oldPassword" type="password">
+                    </div>
+                    <div class="enter_form_input_container">
+                        <label>
+                            <b>Введите новый пароль</b>
+                        </label>
+                        <input name="newPassword" type="password">
+                    </div>
+                    <div class="enter_form_bottom">
+                        <button style="margin-top: 0px;" type="submit">
+                            <b>Изменить</b>
+                        </button> 
+                    </div>
+                    {{ if success }}
+                    <label style="color: green;">
+                            <b>данные успешно обновлены</b>
+                    </label>
+                    {{ end }}
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

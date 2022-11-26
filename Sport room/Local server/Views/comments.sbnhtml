@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width initial-scale=1">
         <link rel="stylesheet" href="../css/posts.css">
+        <link rel="stylesheet" href="../css/comments.css">
         <link rel="stylesheet" href="../css/scrollbar.css">
         <link rel="icon" href="../images/favicon-96x96.png">
         <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
@@ -13,9 +14,9 @@
         <div class="header">
             <div class="logo_holder">
                 <b>Sport room</b>
-            </div>
+            </div>    
             <div class="header_navigation">
-                <a href="/">расписание</a>
+                <a href="/posts">посты</a>
                 {{ if authenticated }}
                 <a style="width: 40px;" href="/account">
                     <img src="../images/user.png">
@@ -26,41 +27,49 @@
             </div>
         </div>
         <div class="main_content">
-            <div class="posts" id="posts">
-                {{~ for post in posts ~}}
-                <div class="post">
-                    <div class="post_info">
-                        <b>{{ post.author }}</b>
-                        &nbsp;|&nbsp;
-                        {{ date.to_string post.date '%d/%m/%Y %R' 'ru-RU' }}
-                    </div>
-                    <div class="post_content">
-                        {{ post.content }}
-                    </div>
-                    <a href={{ post.url }}>комментарии</a>
+            <div class="post">
+                <div class="post_info">
+                    <b>{{ post.author }}</b>
+                    &nbsp;|&nbsp;
+                    {{ date.to_string post.date '%d/%m/%Y %R' 'ru-RU' }}
                 </div>
-                {{~ end ~}}
+                <div class="post_content">
+                    {{ post.content }}
+                </div>
             </div>
             <div class="add_post">
-                <b>Добавить пост</b>
-                <form method="post" action="/posts">
-                    <textarea required maxlength="1000" class="add_post_textarea" name="content" id="content"></textarea>
+                <b>Добавить комментарии</b>
+                <form method="post" action={{ post.url }}>
+                    <textarea required maxlength="200" class="add_post_textarea" name="content" id="content"></textarea>
                     {{ if authenticated }}
                     <div style="display: flex; align-items: flex-start; justify-content: space-between;">
                         <button type="submit">Отправить</button>
                         <div style="display: flex;">
                             <div id="counter">0</div>
                             &nbsp;&nbsp;/&nbsp;
-                            1000
+                            200
                         </div>
                     </div>
                     {{ else }}
-                    Войдите в аккаунт, чтобы оставлять записи
+                    Войдите в аккаунт, чтобы оставлять комментарии
                     {{ end }}
                 </form>
             </div>
+            <div class="comments">
+                {{~ for comment in comments ~}}
+                <div class="comment">
+                    <div class="post_info">
+                        <b>{{ comment.author }}</b>
+                        &nbsp;|&nbsp;
+                        {{ date.to_string comment.date '%d/%m/%Y %R' 'ru-RU' }}
+                    </div>
+                    <div class="post_content">
+                        {{ comment.content }}
+                    </div>
+                </div>
+                {{~ end ~}}
+            </div>
         </div>
-        <script src="../js/ajax-for-posts.js"></script>
         <script src="../js/symbol-counter.js"></script>
     </body>
 </html>

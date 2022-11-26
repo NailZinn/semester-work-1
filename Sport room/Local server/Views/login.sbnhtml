@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sport room</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/enter.css">
+        <link rel="stylesheet" href="../css/scrollbar.css">
+        <link rel="icon" href="../images/favicon-96x96.png">
+    </head>
+    <body>
+        <div class="header">
+            <div class="logo_holder">
+                <b>Sport room</b>
+            </div>
+        </div>
+        <div class="enter_form_container">
+            <form method="post" class="enter_form" action="/login">
+                <fieldset style="display: grid; gap: 24px; border: none;">
+                    <div class="enter_form_input_container">
+                        <label>
+                            <b>Логин</b>
+                        </label>
+                        {{ if wrong_login }}
+                        <label style="color: red;">
+                            <b>неверный логин</b>
+                        </label>
+                        {{ end }}
+                        <input name="login" required type="text" autocomplete="off">
+                    </div>
+                    <div class="enter_form_input_container">
+                        <label>
+                            <b>Пароль</b>
+                        </label>
+                        {{ if wrong_password }}
+                        <label style="color: red;">
+                            <b>неверный пароль</b>
+                        </label>
+                        {{ end }}
+                        <input name="password" required type="password">
+                    </div>
+                    <div>
+                        <input name="rememberMe" style="width: 15px; height: 15px;" type="checkbox">
+                        <label>Запомнить меня</label>
+                    </div>
+                    <div class="enter_form_bottom">
+                        <button style="margin-top: 0px;" type="submit">
+                            <b>Войти</b>
+                        </button> 
+                    </div>
+                    <div class="enter_form_bottom">
+                        <a href="/registration">
+                            Ещё не создали аккаунт? Создайте
+                        </a>     
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

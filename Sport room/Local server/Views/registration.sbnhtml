@@ -4,6 +4,8 @@
         <title>Sport room</title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="../css/enter.css">
+        <link rel="stylesheet" href="../css/scrollbar.css">
+        <link rel="icon" href="../images/favicon-96x96.png">
     </head>
     <body>
         <div class="header">
@@ -12,39 +14,38 @@
             </div>
         </div>
         <div class="enter_form_container">
-            <form method="post" class="enter_form" style="height: 400px;">
+            <form method="post" class="enter_form" action="/registration">
                 <fieldset style="display: grid; gap: 12px; border: none;">
-                    <div>
+                    <div class="enter_form_input_container">
+                        {{ if !success }}
+                        <label style="color: red; font-size: 12px">
+                            <b>такое имя пользователя или адрес эл. почты уже существует</b>
+                        </label>
+                        {{ end }}
                         <label>
                             <b>Введите имя пользователя</b>
                         </label>
-                        <input type="text">
+                        <input name="login" required type="text" autocomplete="off">
                     </div>
-                    <div>
+                    <div class="enter_form_input_container">
                         <label>
                             <b>Введите адрес эл. почты</b>
                         </label>
-                        <input type="email">
+                        <input name="email" required type="email" autocomplete="off">
                     </div>
-                    <div>
-                        <label>
-                            <b>Введите номер телефона</b>
-                        </label>
-                        <input type="tel">
-                    </div>
-                    <div>
+                    <div class="enter_form_input_container">
                         <label>
                             <b>Введите пароль</b>
                         </label>
-                        <input type="password">
+                        <input name="password" required type="password">
                     </div>
-                    <div style="display: flex; justify-content: center">
+                    <div class="enter_form_bottom">
                         <button type="submit">
                             Зарегистрироваться
                         </button>
                     </div>                        
-                    <div style="display: flex; justify-content: center">
-                        <a href="SOME_HREF_TO_BE_CHANGED">
+                    <div class="enter_form_bottom">
+                        <a href="/login">
                             Уже зарегистрированы? Войдите в свой аккаунт
                         </a>     
                     </div>

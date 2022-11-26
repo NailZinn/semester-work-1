@@ -4,22 +4,34 @@
         <title>Sport room</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width initial-scale=1">
+        <link rel="stylesheet" href="../css/scrollbar.css">
         <link rel="stylesheet" href="../css/events.css">
+        <link rel="icon" href="../images/favicon-96x96.png">
     </head>
     <body>
         <div class="header">
             <div class="logo_holder">
                 <b>Sport room</b>
             </div>
+            <div class="header_navigation">
+                <a href="/posts">посты</a>
+                {{ if authenticated }}
+                <a style="width: 40px;" href="/account">
+                    <img src="../images/user.png">
+                </a>
+                {{ else }}
+                <a href="/login">войти</a>
+                {{ end }}
+            </div>
         </div>
         <div class="main_content">
             <div class="events">
                 <div class="events_header">
-                    <button>футбол</button>
-                    <button>хоккей</button>
-                    <button>теннис</button>
-                    <button>баскетбол</button>
-                    <button>волейбол</button>
+                    <a href="/">футбол</a>
+                    <a href="/hockey">хоккей</a>
+                    <a href="/tennis">теннис</a>
+                    <a href="/basketball">баскетбол</a>
+                    <a href="/volleyball">волейбол</a>
                 </div>
                 {{~ for event in events ~}}
                 <div class="event">
