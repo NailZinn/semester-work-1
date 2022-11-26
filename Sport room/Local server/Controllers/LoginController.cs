@@ -1,21 +1,40 @@
-﻿using Local_server.ActionResult;
+﻿using Local_server.ActionResults;
 using Local_server.Attributes;
+using Local_server.DB;
+using Local_server.Services;
 
 namespace Local_server.Controllers
 {
     [ApiController("/login")]
     internal class LoginController
     {
-        [HttpGet("^$")]
-        public LoginResult GetLoginPage()
+        private readonly AccountDBContext _dbContext;
+
+        public LoginController()
         {
-            return new LoginResult();
+            _dbContext = new AccountDBContext();
+        }
+
+        [HttpGet("^$")]
+        public async Task<LoginResult> GetLoginPage()
+        {
+            return await Task.Run(() => new LoginResult(false, false));
         }
 
         [HttpPost("^$")]
-        public LoginResult Post(string login, string password)
+        public async Task<LoginResult> PostLoginData(string login, string password, string rememberMe)
         {
-            return new LoginResult(login, password);
+            var account = await _dbContext.SelectAsync("Login", login);
+
+            if (account is null)
+            {
+                return new LoginResult(true, false);
+            }
+
+            if (HashManager.Encrypt(password + account!.Salt) == account.Password)
+                return new LoginResult(account!, rememberMe);
+
+            return new LoginResult(false, true);
         }
     }
 }

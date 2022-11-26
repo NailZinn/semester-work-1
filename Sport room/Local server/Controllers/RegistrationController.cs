@@ -1,21 +1,37 @@
-﻿using Local_server.ActionResult;
+﻿using Local_server.ActionResults;
 using Local_server.Attributes;
+using Local_server.DB;
+using Local_server.Services;
 
 namespace Local_server.Controllers
 {
     [ApiController("/registration")]
     internal class RegistrationController
     {
-        [HttpGet("^$")]
-        public RegistrationResult GetRegistrationPage()
+        private readonly AccountDBContext _dbContext;
+
+        public RegistrationController()
         {
-            return new RegistrationResult();
+            _dbContext = new AccountDBContext();
+        }
+
+        [HttpGet("^$")]
+        public async Task<RegistrationResult> GetRegistrationPage()
+        {
+            return await Task.Run(() => new RegistrationResult(true));
         }
 
         [HttpPost("^$")]
-        public RegistrationResult Post(string login, string email, string phone, string password)
+        public async Task<RegistrationResult> PostRegistrationData(string login, string email, string password)
         {
-            return new RegistrationResult(login, email, phone, password);
+            var salt = HashManager.CreateSalt();
+            var encyptedPassword = HashManager.Encrypt(password + salt);
+
+            var isSuccess = await _dbContext.InsertAsync(login, email, encyptedPassword, salt);
+
+            return isSuccess
+                ? new RegistrationResult()
+                : new RegistrationResult(isSuccess);
         }
     }
 }
